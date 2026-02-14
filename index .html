@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Sriju ❤️</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&family=Hind+Siliguri:wght@300;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-pink: #ffafbd;
+            --rose: #ffc3a0;
+            --red: #ff4b2b;
+            --dark-red: #ff416c;
+        }
+
+        body, html {
+            margin: 0; padding: 0; width: 100%; height: 100%;
+            overflow: hidden; font-family: 'Poppins', 'Hind Siliguri', sans-serif;
+            background: linear-gradient(135deg, var(--primary-pink), var(--rose));
+            display: flex; justify-content: center; align-items: center;
+        }
+
+        .slide { position: absolute; width: 100%; text-align: center; display: none; z-index: 10; padding: 20px; box-sizing: border-box; overflow-y: auto; max-height: 100vh; }
+        #main-container { display: block; }
+
+        /* General Elements */
+        .bear { font-size: 80px; animation: bounce 2s infinite ease-in-out; }
+        @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-30px); } }
+        h1 { font-family: 'Dancing Script', cursive; font-size: clamp(2rem, 8vw, 3.5rem); color: #d81b60; margin: 10px 0; }
+        
+        button { cursor: pointer; border: none; border-radius: 50px; font-weight: 600; transition: 0.3s; }
+        #yes-btn { background: linear-gradient(to right, var(--red), var(--dark-red)); color: white; padding: 15px 40px; font-size: 1.5rem; }
+        #no-btn { background: white; color: var(--red); border: 2px solid var(--red); padding: 10px 25px; position: relative; }
+
+        /* Diary Styling */
+        .diary-note {
+            background: rgba(255, 255, 255, 0.25); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+            padding: 30px; border-radius: 25px; max-width: 550px; margin: 20px auto;
+            text-align: left; line-height: 1.8; color: #5c0a2a; border: 1px solid rgba(255,255,255,0.5);
+        }
+        .next-btn { margin-top: 15px; padding: 12px 35px; background: var(--dark-red); color: white; }
+
+        /* Game Styling */
+        #game-canvas { background: rgba(255, 255, 255, 0.2); border: 2px solid white; border-radius: 15px; display: block; margin: 10px auto; touch-action: none; max-width: 100%; }
+        .game-overlay { 
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); 
+            display: none; background: white; padding: 30px; border-radius: 25px; 
+            width: 80%; max-width: 300px; z-index: 100; box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+        }
+
+        /* FINAL SLIDE: Twinkling Sky */
+        #final-slide { background: linear-gradient(to bottom, #050510, #0f0c29, #1b1b2f); color: white; overflow: hidden; height: 100vh; }
+        .final-text-container { max-width: 600px; margin: 0 auto; line-height: 2; z-index: 20; position: relative; padding-top: 5vh; }
+        .final-line { margin-bottom: 22px; opacity: 0; transform: translateY(20px); transition: all 1.8s ease; font-size: 1.1rem; }
+        .reveal { opacity: 1 !important; transform: translateY(0) !important; }
+
+        .star { position: absolute; background: white; border-radius: 50%; opacity: 0; animation: softTwinkle var(--d) infinite ease-in-out; }
+        @keyframes softTwinkle { 0%, 100% { opacity: 0.1; transform: scale(0.8); } 50% { opacity: 0.7; transform: scale(1.1); } }
+
+        /* Effects */
+        .heart-float { position: fixed; pointer-events: none; animation: floatUp linear forwards; z-index: 1; }
+        @keyframes floatUp { 0% { transform: translateY(0); opacity: 0; } 10% { opacity: 0.8; } 100% { transform: translateY(-110vh) rotate(360deg); opacity: 0; } }
+        .teddy { font-size: 55px; position: fixed; transition: all 2.5s ease; z-index: 100; }
+        .fade-out { opacity: 0 !important; pointer-events: none; }
+    </style>
+</head>
+<body>
+
+    <div id="main-container" class="slide">
+        <div class="bear">🧸</div>
+        <h1>Will You Be My Valentine, Sriju❤️?</h1>
+        <div class="btn-container" style="display: flex; justify-content: center; gap: 40px; min-height: 120px; align-items: center;">
+            <button id="yes-btn" onclick="goToTransition()">Yes</button>
+            <button id="no-btn" onmouseover="moveNo()" onclick="moveNo()">No</button>
+        </div>
+    </div>
+
+    <div id="iknew-text" style="font-family: 'Dancing Script'; font-size: 4rem; color: #d81b60; display: none; position: absolute; z-index: 100;">I knew it♥️🙂</div>
+
+    <div id="second-slide" class="slide">
+        <div class="diary-note">
+            <p>তোর মনে আছে সেই দিন টা যেই দিন আমাদের প্রথম কথা বলা শুরু হয় ?</p>
+            <p>আমি tuition তে বোতল টা ফেলে এসেছিলাম , আর তুই আমাকে মেসেজ করেছিলিস সেটা জানানোর জন্য।</p>
+            <p>৩ বছর হয়ে গেল সেই ঘটনাটা , তবুও জীবনে সব চেয়ে গুরুত্বপূর্ণ একটা দিন।</p>
+            <p>কখনও ভাবতেই পারি নি জীবনে কখনও এত lucky হব, ভাবতেই পারি নি তুই কখনো রাজি হবি।</p>
+            <p>তারপর তো কত সমস্যা এলো , কত বার কথা বন্ধ হলো , কিন্তু আজও আমাদের কথা বন্ধ হলো না।</p>
+            <p>জানি তোর সাথে অনেক ঝগড়া করি , সেই জন্য খুব খুব খুব sorry, কিন্তু জীবনে সব থেকে ভালোবাসার মানুষ তাও তুই । তাই মাঝে মাঝে অভিমান করে বসি।</p>
+            <p>১২ November প্রথম সামনে তোকে বলতে পেরেছি নিজের মনের কথা যে তোকে আমি ভালবাসি।</p>
+            <p>জীবনে যতই সমস্যা আসুক সবসময় তোর সাথে থাকবো।</p>
+            <h3 style="text-align: center; color: #d81b60;">sriju sona ❤️</h3>
+            <div style="text-align: center;"><button class="next-btn" onclick="startSlide3()">Next ❤️</button></div>
+        </div>
+    </div>
+
+    <div id="game-slide" class="slide">
+        <h1>Catch my heart ❤️</h1>
+        <p id="score-text" style="color: #d81b60; font-weight: bold; font-size: 1.2rem;">Score: 0 / 5</p>
+        <canvas id="game-canvas" width="320" height="400"></canvas>
+        <div id="fail-ui" class="game-overlay">
+            <p id="fail-msg" style="font-weight: bold; color: #5c0a2a;"></p>
+            <button onclick="resetGame()" style="background: var(--red); color: white; padding: 12px 25px; width: 100%;">Chol amar parbo e</button>
+        </div>
+        <div id="win-ui" class="game-overlay">
+            <p style="font-weight: bold; color: #d81b60; font-size: 1.3rem;">দেখ আমরা সব বাধা পেরোতে পেরেছি ❤️</p>
+            <button onclick="goToSlide4()" style="background: #28a745; color: white; padding: 12px 25px; width: 100%;">Final Surprise 🎁</button>
+        </div>
+    </div>
+
+    <div id="final-slide" class="slide">
+        <div id="stars-container"></div>
+        <div class="final-text-container">
+            <div class="final-line">আমরা জানি সামনে অনেক বাধা আছে...</div>
+            <div class="final-line">আর ভবিষ্যতে কী হবে, সেটা কেউই জানে না।</div>
+            
+            <div class="final-line" style="margin-top: 35px;">সব গল্পের শেষ আমরা আগেই লিখতে পারি না...</div>
+            <div class="final-line">কিন্তু আমাদের গল্পটা যতদূর যায়,</div>
+            <div class="final-line">আমি চাই সেটা হোক একসাথে।</div>
+            
+            <div class="final-line" style="margin-top: 35px;">যতদিন আমাদের হাতে সময় আছে,</div>
+            <div class="final-line">ততদিন আমরা একে অপরকে বেছে নিই...</div>
+            <div class="final-line">ইচ্ছে করে, মন থেকে।</div>
+            
+            <div class="final-line" style="margin-top: 45px; font-size: 1.5rem; color: #ffafbd; font-weight: bold;">
+                কারণ আজকের এই মুহূর্তে,<br>
+                আমি শুধু তোকে সত্যি ভালোবাসি, Sriju ❤️
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let msgIdx = 0; 
+        let yesScale = 1;
+        const noMessages = [
+            "Try again", 
+            "Not an option", 
+            "wait you are hurting me 😭", 
+            "Think carefully sriju ...❤️"
+        ];
+
+        function createHeart() {
+            const h = document.createElement('div'); h.className = 'heart-float'; h.innerHTML = '❤️';
+            h.style.left = Math.random() * 100 + 'vw'; h.style.bottom = '-50px';
+            h.style.fontSize = (Math.random()*20+15)+'px'; h.style.animationDuration = (Math.random()*3+4)+'s';
+            document.body.appendChild(h); setTimeout(() => h.remove(), 6000);
+        }
+        setInterval(createHeart, 500);
+
+        function moveNo() {
+            const n = document.getElementById('no-btn'); 
+            const y = document.getElementById('yes-btn');
+            
+            // Fixed Text Logic
+            if (msgIdx < noMessages.length) {
+                n.innerText = noMessages[msgIdx];
+                msgIdx++;
+            } else {
+                n.innerText = noMessages[noMessages.length - 1];
+            }
+            
+            yesScale += 0.35; 
+            y.style.transform = `scale(${yesScale})`;
+            n.style.position = 'fixed'; 
+            n.style.left = Math.random() * 70 + 'vw'; 
+            n.style.top = Math.random() * 70 + 'vh';
+        }
+
+        function goToTransition() {
+            document.getElementById('main-container').classList.add('fade-out');
+            setTimeout(() => {
+                document.getElementById('main-container').style.display='none';
+                const ik = document.getElementById('iknew-text'); ik.style.display='block';
+                setTimeout(() => { ik.classList.add('fade-out'); setTimeout(spawnTeddies, 1000); }, 1500);
+            }, 500);
+        }
+
+        function spawnTeddies() {
+            document.getElementById('iknew-text').style.display='none';
+            // Fixed Multi-colored Hearts
+            const heartColors = ['❤️', '💖', '💛', '💙'];
+            
+            for(let i=0; i<4; i++) {
+                const t = document.createElement('div'); 
+                t.className = 'teddy'; 
+                t.innerHTML = `🧸${heartColors[i]}`; 
+                
+                t.style.left = (Math.random() > 0.5 ? '-100px' : '110vw'); 
+                t.style.top = Math.random()*100+'vh';
+                document.body.appendChild(t);
+                
+                setTimeout(() => {
+                    t.style.top = (20+Math.random()*50)+'vh'; 
+                    t.style.left = (10+Math.random()*70)+'vw';
+                    setTimeout(() => { 
+                        t.classList.add('fade-out'); 
+                        if(i===3) showDiary(); 
+                    }, 2500);
+                }, 100);
+            }
+        }
+
+        function showDiary() {
+            const s2 = document.getElementById('second-slide'); s2.style.display='block'; setTimeout(() => s2.style.opacity='1', 100);
+        }
+
+        function startSlide3() {
+            document.getElementById('second-slide').style.display='none';
+            document.getElementById('game-slide').style.display='block'; initGame();
+        }
+
+        const canvas = document.getElementById('game-canvas'); const ctx = canvas.getContext('2d');
+        const failMsgs = ["Choriye debo😤", "Kotha bolbo na🥺", "Ar ekta kotha bolbi na amar sathe🚫"];
+        let heartY, velocity, pipes, score, gameActive; const gravity = 0.25;
+
+        function initGame() {
+            heartY = 200; velocity = 0; pipes = []; score = 0; gameActive = true;
+            document.getElementById('fail-ui').style.display = 'none'; document.getElementById('win-ui').style.display = 'none';
+            document.getElementById('score-text').innerText = "Score: 0 / 5"; spawnPipe(); gameLoop();
+        }
+
+        function spawnPipe() {
+            const gap = 145; const topHeight = Math.random() * (canvas.height - gap - 100) + 50;
+            pipes.push({ x: canvas.width, top: topHeight, bottom: topHeight + gap, passed: false });
+        }
+
+        function resetGame() { initGame(); }
+        canvas.addEventListener('mousedown', () => { if(gameActive) velocity = -5.5; });
+        canvas.addEventListener('touchstart', (e) => { e.preventDefault(); if(gameActive) velocity = -5.5; });
+
+        function gameLoop() {
+            if(!gameActive) return;
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            velocity += gravity; heartY += velocity; ctx.font = "35px Arial"; ctx.fillText("❤️", 50, heartY);
+            if(heartY > canvas.height || heartY < 0) return endGame();
+            pipes.forEach((p) => {
+                p.x -= 2.2; ctx.fillStyle = "rgba(255, 255, 255, 0.7)";
+                ctx.fillRect(p.x, 0, 50, p.top); ctx.fillRect(p.x, p.bottom, 50, canvas.height);
+                if(50 + 25 > p.x && 50 < p.x + 50) { if(heartY - 20 < p.top || heartY > p.bottom) return endGame(); }
+                if(!p.passed && p.x < 50) { p.passed = true; score++; document.getElementById('score-text').innerText = `Score: ${score} / 5`; }
+            });
+            if(pipes.length > 0 && pipes[0].x < -50) pipes.shift();
+            if(pipes.length > 0 && pipes[pipes.length-1].x < canvas.width - 220) spawnPipe();
+            if(score >= 5) { gameActive = false; document.getElementById('win-ui').style.display = 'block'; }
+            else { requestAnimationFrame(gameLoop); }
+        }
+
+        function endGame() {
+            gameActive = false; document.getElementById('fail-ui').style.display = 'block';
+            document.getElementById('fail-msg').innerText = failMsgs[Math.floor(Math.random()*failMsgs.length)];
+        }
+
+        function goToSlide4() {
+            document.getElementById('game-slide').style.display = 'none';
+            const s4 = document.getElementById('final-slide'); s4.style.display = 'flex';
+            createStars();
+            const lines = document.querySelectorAll('.final-line');
+            lines.forEach((line, i) => { setTimeout(() => line.classList.add('reveal'), (i + 1) * 1600); });
+        }
+
+        function createStars() {
+            const container = document.getElementById('stars-container');
+            for (let i = 0; i < 150; i++) {
+                const star = document.createElement('div'); star.className = 'star';
+                const size = Math.random() * 2 + 1 + 'px';
+                star.style.width = size; star.style.height = size;
+                star.style.left = Math.random() * 100 + 'vw'; star.style.top = Math.random() * 100 + 'vh';
+                star.style.setProperty('--d', Math.random() * 4 + 3 + 's');
+                container.appendChild(star);
+            }
+        }
+    </script>
+</body>
+</html>
